@@ -1,0 +1,12 @@
+apiVersion: dummy.grothesk.io/v1alpha1
+kind: WorkflowsDemo
+metadata:
+  labels:
+    app.kubernetes.io/name: workflowsdemo
+    app.kubernetes.io/instance: workflowsdemo-sample
+    app.kubernetes.io/part-of: operator-workflows
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: operator-workflows
+  name: workflowsdemo-sample
+spec:
+  # TODO(user): Add fields here

@@ -1,0 +1,27 @@
+# permissions for end users to view workflowsdemoes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: workflowsdemo-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: operator-workflows
+    app.kubernetes.io/part-of: operator-workflows
+    app.kubernetes.io/managed-by: kustomize
+  name: workflowsdemo-viewer-role
+rules:
+- apiGroups:
+  - dummy.grothesk.io
+  resources:
+  - workflowsdemoes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - dummy.grothesk.io
+  resources:
+  - workflowsdemoes/status
+  verbs:
+  - get
