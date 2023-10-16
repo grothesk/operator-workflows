@@ -4,4 +4,6 @@
   group: dummy.grothesk.io
   kind: WorkflowsDemo
   role: workflowsdemo
+  reconcilePeriod: 0s
+  watchDependentResources: false
 #+kubebuilder:scaffold:watch

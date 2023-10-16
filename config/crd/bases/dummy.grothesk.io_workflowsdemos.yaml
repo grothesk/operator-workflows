@@ -2,20 +2,20 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: workflowsdemoes.dummy.grothesk.io
+  name: workflowsdemos.dummy.grothesk.io
 spec:
   group: dummy.grothesk.io
   names:
     kind: WorkflowsDemo
     listKind: WorkflowsDemoList
-    plural: workflowsdemoes
+    plural: workflowsdemos
     singular: workflowsdemo
   scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: WorkflowsDemo is the Schema for the workflowsdemoes API
+        description: WorkflowsDemo is the Schema for the workflowsdemos API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -33,10 +33,16 @@ spec:
             description: Spec defines the desired state of WorkflowsDemo
             type: object
             x-kubernetes-preserve-unknown-fields: true
+            properties:
+              desiredState:
+                type: integer
           status:
             description: Status defines the observed state of WorkflowsDemo
             type: object
             x-kubernetes-preserve-unknown-fields: true
+            properties:
+              currentState:
+                type: integer
         type: object
     served: true
     storage: true

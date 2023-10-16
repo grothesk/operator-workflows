@@ -1,2 +1,13 @@
 ---
 # tasks file for WorkflowsDemo
+- debug:
+    msg: Something happened with a WorkflowsDemo resource called {{ ansible_operator_meta.name }}
+
+-  name: Set current state to desired state
+   operator_sdk.util.k8s_status:
+    api_version: dummy.grothesk.io/v1alpha1
+    kind: WorkflowsDemo
+    name: "{{ ansible_operator_meta.name }}"
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    status:
+      currentState: "{{ desired_state }}"

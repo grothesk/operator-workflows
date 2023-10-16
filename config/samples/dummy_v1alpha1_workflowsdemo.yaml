@@ -9,4 +9,4 @@ metadata:
     app.kubernetes.io/created-by: operator-workflows
   name: workflowsdemo-sample
 spec:
-  # TODO(user): Add fields here
+  desiredState: 3
