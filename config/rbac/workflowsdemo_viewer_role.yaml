@@ -14,7 +14,7 @@ rules:
 - apiGroups:
   - dummy.grothesk.io
   resources:
-  - workflowsdemoes
+  - workflowsdemos
   verbs:
   - get
   - list
@@ -22,6 +22,6 @@ rules:
 - apiGroups:
   - dummy.grothesk.io
   resources:
-  - workflowsdemoes/status
+  - workflowsdemos/status
   verbs:
   - get

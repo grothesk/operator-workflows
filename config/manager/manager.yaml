@@ -70,6 +70,7 @@ spec:
         - --leader-elect
         - --leader-election-id=operator-workflows
         image: controller:latest
+        imagePullPolicy: IfNotPresent
         name: manager
         env:
         - name: ANSIBLE_GATHERING

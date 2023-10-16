@@ -43,9 +43,9 @@ rules:
   - apiGroups:
       - dummy.grothesk.io
     resources:
-      - workflowsdemoes
-      - workflowsdemoes/status
-      - workflowsdemoes/finalizers
+      - workflowsdemos
+      - workflowsdemos/status
+      - workflowsdemos/finalizers
     verbs:
       - create
       - delete
