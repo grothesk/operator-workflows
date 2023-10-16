@@ -53,4 +53,6 @@ jobs:
       - name: Run tests
         run: |
           set -o pipefail
+          echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> $HOME/.bashrc  # Modify for your shell
+          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           bash hack/test.sh 2>&1 | tee /tmp/e2e-test.log
