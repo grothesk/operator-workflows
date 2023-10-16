@@ -1,0 +1,6 @@
+apiVersion: dummy.grothesk.io/v1alpha1
+kind: WorkflowsDemo
+metadata:
+  name: test-k8s-01
+spec:
+  desiredState: 2

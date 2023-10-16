@@ -10,7 +10,7 @@ on:
       - 'main'
 
 jobs:
-  test:
+  e2e-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,3 +44,8 @@ jobs:
       
       - name: Install and deploy operator
         run: make install deploy
+
+      - name: Run tests
+        run: |
+          set -o pipefail
+          kubectl kuttl test tests/k8s --config tests/kuttl-tests.yaml
