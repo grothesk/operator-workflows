@@ -26,18 +26,11 @@ jobs:
             ./"${KREW}" install krew
           )
           echo "${HOME}/.krew/bin" >> $GITHUB_PATH
-          # export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-          # kubectl krew version
-          # kubectl krew install kuttl
-          # kubectl kuttl version
-      
+
       - name: Install kuttl
         run: |
           kubectl krew install kuttl
           kubectl kuttl version
-
-      - name: Check GITHUB_PATH
-        run: echo $PATH
 
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -57,5 +50,4 @@ jobs:
       - name: Run tests
         run: |
           set -o pipefail
-          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           bash hack/test.sh 2>&1 | tee /tmp/e2e-test.log
