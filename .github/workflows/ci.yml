@@ -25,10 +25,16 @@ jobs:
             tar zxvf "${KREW}.tar.gz" &&
             ./"${KREW}" install krew
           )
+          # echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> $HOME/.bashrc  # Modify for your shell
+          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+          echo $PATH
           echo "${KREW_ROOT:-$HOME/.krew}/bin" >> $GITHUB_PATH
           kubectl krew version
           kubectl krew install kuttl
           kubectl kuttl version
+      
+      - name: Check GITHUB_PATH
+        run: echo $GITHUB_PATH
 
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -37,15 +43,21 @@ jobs:
         uses: medyagh/setup-minikube@master
 
       - name: Build image
+        shell: bash
         run: |
-          export SHELL=/bin/bash
           eval $(minikube -p minikube docker-env)
           make docker-build
       
       - name: Install and deploy operator
         run: make install deploy
 
+      # - name: Add /usr/local/bin to PATH
+      #   run: |
+      #     echo "/usr/local/bin" >> $GITHUB_PATH
+
       - name: Run tests
         run: |
           set -o pipefail
+          # echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> $HOME/.bashrc  # Modify for your shell
+          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           bash hack/test.sh 2>&1 | tee /tmp/e2e-test.log
