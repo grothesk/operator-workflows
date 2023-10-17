@@ -25,16 +25,17 @@ jobs:
             tar zxvf "${KREW}.tar.gz" &&
             ./"${KREW}" install krew
           )
-          # echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> $HOME/.bashrc  # Modify for your shell
-          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+          # export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+          echo "KREW_ROOT=$HOME/.krew" >> $GITHUB_ENV
+          echo "${{ env.KREW_ROOT }}/bin" >> $GITHUB_PATH
+
           echo $PATH
-          echo "${KREW_ROOT:-$HOME/.krew}/bin" >> $GITHUB_PATH
           kubectl krew version
           kubectl krew install kuttl
           kubectl kuttl version
       
       - name: Check GITHUB_PATH
-        run: echo $GITHUB_PATH
+        run: echo $PATH
 
       - name: Checkout repo
         uses: actions/checkout@v3
